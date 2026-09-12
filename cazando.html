@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Juego Cazando</title>
+
+    <link rel="stylesheet" href="cazando.css">
+</head>
+
+<body>
+
+    <h1>🎯 Juego Cazando</h1>
+
+    <p>Autor: Tu Nombre o Nickname</p>
+
+    <div class="panel">
+
+        <span>
+            Puntos:
+            <span id="puntos">0</span>
+        </span>
+
+        <span>
+            Tiempo:
+            <span id="tiempo">10</span>
+        </span>
+
+    </div>
+
+    <canvas id="juego" width="500" height="350"></canvas>
+
+    <div class="controles">
+
+        <button onclick="mover('arriba')">⬆</button>
+
+        <br>
+
+        <button onclick="mover('izquierda')">⬅</button>
+
+        <button onclick="mover('abajo')">⬇</button>
+
+        <button onclick="mover('derecha')">➡</button>
+
+    </div>
+
+    <p id="mensaje"></p>
+
+    <script src="cazando.js"></script>
+
+</body>
+
+</html>
