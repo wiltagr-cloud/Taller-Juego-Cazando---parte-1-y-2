@@ -5,14 +5,12 @@ const puntosTexto = document.getElementById("puntos");
 const tiempoTexto = document.getElementById("tiempo");
 const mensaje = document.getElementById("mensaje");
 
-
 let jugador = {
     x: 50,
     y: 150,
     tamaño: 30,
-    velocidad: 20
+    velocidad: 10
 };
-
 
 let objetivo = {
     x: 400,
@@ -23,23 +21,37 @@ let objetivo = {
 let puntos = 0;
 let tiempo = 10;
 let juegoActivo = true;
+let reloj;
 
+
+// =========================
+// DIBUJAR JUGADOR
+// =========================
 
 function dibujarJugador() {
+
     ctx.fillStyle = "blue";
+
     ctx.fillRect(
         jugador.x,
         jugador.y,
         jugador.tamaño,
         jugador.tamaño
     );
+
 }
 
 
+// =========================
+// DIBUJAR OBJETIVO
+// =========================
+
 function dibujarObjetivo() {
+
     ctx.fillStyle = "red";
 
     ctx.beginPath();
+
     ctx.arc(
         objetivo.x,
         objetivo.y,
@@ -49,103 +61,206 @@ function dibujarObjetivo() {
     );
 
     ctx.fill();
+
 }
 
+
+// =========================
+// LIMPIAR CANVAS
+// =========================
+
+function limpiarCanva() {
+
+    ctx.clearRect(
+        0,
+        0,
+        canvas.width,
+        canvas.height
+    );
+
+}
+
+
+// =========================
+// DIBUJAR TODO
+// =========================
 
 function dibujar() {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    limpiarCanva();
 
     dibujarJugador();
+
     dibujarObjetivo();
+
 }
 
 
-function mover(direccion) {
+// =========================
+// MOVER IZQUIERDA
+// =========================
+
+function moverIzquierda() {
 
     if (!juegoActivo) {
         return;
     }
 
-    if (direccion === "arriba") {
-        jugador.y -= jugador.velocidad;
-    }
-
-    if (direccion === "abajo") {
-        jugador.y += jugador.velocidad;
-    }
-
-    if (direccion === "izquierda") {
-        jugador.x -= jugador.velocidad;
-    }
-
-    if (direccion === "derecha") {
-        jugador.x += jugador.velocidad;
-    }
-
-    // Evitar salir del canvas
+    jugador.x = jugador.x - jugador.velocidad;
 
     if (jugador.x < 0) {
         jugador.x = 0;
     }
 
-    if (jugador.y < 0) {
-        jugador.y = 0;
-    }
-
-    if (jugador.x + jugador.tamaño > canvas.width) {
-        jugador.x = canvas.width - jugador.tamaño;
-    }
-
-    if (jugador.y + jugador.tamaño > canvas.height) {
-        jugador.y = canvas.height - jugador.tamaño;
-    }
-
-    comprobarCaza();
-
     dibujar();
+
+    detectarColision();
+
 }
 
 
-function comprobarCaza() {
+// =========================
+// MOVER DERECHA
+// =========================
 
-    const distanciaX =
-        jugador.x + jugador.tamaño / 2 - objetivo.x;
-
-    const distanciaY =
-        jugador.y + jugador.tamaño / 2 - objetivo.y;
-
-    const distancia =
-        Math.sqrt(
-            distanciaX * distanciaX +
-            distanciaY * distanciaY
-        );
-
-    if (distancia < jugador.tamaño / 2 + objetivo.tamaño) {
-
-        puntos++;
-
-        puntosTexto.textContent = puntos;
-
-        // Nueva posición del objetivo
-        objetivo.x =
-            Math.random() * (canvas.width - 50) + 25;
-
-        objetivo.y =
-            Math.random() * (canvas.height - 50) + 25;
-    }
-}
-
-
-// Temporizador
-const reloj = setInterval(function () {
+function moverDerecha() {
 
     if (!juegoActivo) {
         return;
     }
 
-    tiempo--;
+    jugador.x = jugador.x + jugador.velocidad;
+
+    if (jugador.x + jugador.tamaño > canvas.width) {
+        jugador.x = canvas.width - jugador.tamaño;
+    }
+
+    dibujar();
+
+    detectarColision();
+
+}
+
+
+// =========================
+// MOVER ARRIBA
+// =========================
+
+function moverArriba() {
+
+    if (!juegoActivo) {
+        return;
+    }
+
+    jugador.y = jugador.y - jugador.velocidad;
+
+    if (jugador.y < 0) {
+        jugador.y = 0;
+    }
+
+    dibujar();
+
+    detectarColision();
+
+}
+
+
+// =========================
+// MOVER ABAJO
+// =========================
+
+function moverAbajo() {
+
+    if (!juegoActivo) {
+        return;
+    }
+
+    jugador.y = jugador.y + jugador.velocidad;
+
+    if (jugador.y + jugador.tamaño > canvas.height) {
+        jugador.y = canvas.height - jugador.tamaño;
+    }
+
+    dibujar();
+
+    detectarColision();
+
+}
+
+
+// =========================
+// DETECTAR COLISION
+// =========================
+
+function detectarColision() {
+
+    if (
+        jugador.x < objetivo.x + objetivo.tamaño &&
+        jugador.x + jugador.tamaño > objetivo.x - objetivo.tamaño &&
+        jugador.y < objetivo.y + objetivo.tamaño &&
+        jugador.y + jugador.tamaño > objetivo.y - objetivo.tamaño
+    ) {
+
+        puntos = puntos + 1;
+
+        puntosTexto.textContent = puntos;
+
+
+        // =========================
+        // GANADOR
+        // =========================
+
+        if (puntos >= 6) {
+
+            alert("¡GANADOR!");
+
+            juegoActivo = false;
+
+            clearInterval(reloj);
+
+            mensaje.textContent = "🎉 ¡GANASTE! Puntuación: " + puntos;
+
+            return;
+        }
+
+
+        // Nueva posición del objetivo
+
+        objetivo.x = generarAleatorio(
+            25,
+            canvas.width - 25
+        );
+
+        objetivo.y = generarAleatorio(
+            25,
+            canvas.height - 25
+        );
+
+        dibujar();
+
+    }
+
+}
+
+
+// =========================
+// RESTAR TIEMPO
+// =========================
+
+function restarTiempo() {
+
+    if (!juegoActivo) {
+        return;
+    }
+
+    tiempo = tiempo - 1;
 
     tiempoTexto.textContent = tiempo;
+
+
+    // =========================
+    // GAME OVER
+    // =========================
 
     if (tiempo <= 0) {
 
@@ -153,35 +268,123 @@ const reloj = setInterval(function () {
 
         clearInterval(reloj);
 
+        alert("GAME OVER");
+
         mensaje.textContent =
-            "⏰ ¡Tiempo terminado! Puntuación: " + puntos;
+            "💀 GAME OVER - Puntuación: " + puntos;
 
     }
 
-}, 1000);
+}
 
 
-// Control con teclado
+// =========================
+// INICIAR JUEGO
+// =========================
+
+function iniciar() {
+
+    dibujar();
+
+    reloj = setInterval(
+        restarTiempo,
+        1000
+    );
+
+}
+
+
+// =========================
+// REINICIAR
+// =========================
+
+function reiniciar() {
+
+    // Detener reloj anterior
+
+    clearInterval(reloj);
+
+
+    // Restaurar variables
+
+    puntos = 0;
+
+    tiempo = 10;
+
+    juegoActivo = true;
+
+
+    // Restaurar jugador
+
+    jugador.x = 50;
+
+    jugador.y = 150;
+
+
+    // Generar objetivo nuevamente
+
+    objetivo.x = generarAleatorio(
+        25,
+        canvas.width - 25
+    );
+
+    objetivo.y = generarAleatorio(
+        25,
+        canvas.height - 25
+    );
+
+
+    // Actualizar pantalla
+
+    puntosTexto.textContent = puntos;
+
+    tiempoTexto.textContent = tiempo;
+
+    mensaje.textContent = "";
+
+
+    // Dibujar
+
+    dibujar();
+
+
+    // Volver a iniciar contador
+
+    reloj = setInterval(
+        restarTiempo,
+        1000
+    );
+
+}
+
+
+// =========================
+// TECLADO
+// =========================
+
 document.addEventListener("keydown", function(event) {
 
     if (event.key === "ArrowUp") {
-        mover("arriba");
+        moverArriba();
     }
 
     if (event.key === "ArrowDown") {
-        mover("abajo");
+        moverAbajo();
     }
 
     if (event.key === "ArrowLeft") {
-        mover("izquierda");
+        moverIzquierda();
     }
 
     if (event.key === "ArrowRight") {
-        mover("derecha");
+        moverDerecha();
     }
 
 });
 
 
-// Dibujar el juego al comenzar
-dibujar();
+// =========================
+// INICIAR
+// =========================
+
+iniciar();
