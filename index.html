@@ -10,46 +10,176 @@
     <link rel="stylesheet" href="cazando.css">
 
     <script src="utilitarios.js"></script>
-
 </head>
 
 <body>
 
-    <h1>🎯 Juego Cazando</h1>
+    <div class="juego-contenedor">
 
-    <p>Autor: Wilson Tapuy</p>
+        <!-- TÍTULO -->
+        <header class="encabezado">
 
-    <div class="panel">
+            <div class="titulo-caja">
 
-        <span>
-            Puntos:
-            <span id="puntos">0</span>
-        </span>
+                <div class="icono-titulo">
+                    🎯
+                </div>
 
-        <span>
-            Tiempo:
-            <span id="tiempo">10</span>
-        </span>
+                <div class="titulo-texto">
+
+                    <h1>Juego Cazando</h1>
+
+                    <p class="subtitulo">
+                        ¡Apunta, caza y consigue la mayor cantidad de puntos!
+                    </p>
+
+                </div>
+
+            </div>
+
+            <p class="autor">
+                AUTOR: <strong>Wilson Tapuy</strong>
+            </p>
+
+        </header>
+
+
+        <!-- PANEL DE INFORMACIÓN -->
+        <div class="panel">
+
+            <div class="dato">
+
+                <span class="dato-icono">
+                    🏆
+                </span>
+
+                <div class="dato-contenido">
+
+                    <span class="dato-titulo">
+                        PUNTOS
+                    </span>
+
+                    <strong id="puntos">
+                        0
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+            <div class="separador"></div>
+
+
+            <div class="dato">
+
+                <span class="dato-icono reloj">
+                    ⏱️
+                </span>
+
+                <div class="dato-contenido">
+
+                    <span class="dato-titulo">
+                        TIEMPO
+                    </span>
+
+                    <strong id="tiempo">
+                        10
+                    </strong>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- ÁREA DEL JUEGO -->
+        <main class="zona-juego">
+
+            <div class="marco-juego">
+
+                <div class="esquina esquina-arriba-izq"></div>
+                <div class="esquina esquina-arriba-der"></div>
+                <div class="esquina esquina-abajo-izq"></div>
+                <div class="esquina esquina-abajo-der"></div>
+
+                <canvas
+                    id="juego"
+                    width="500"
+                    height="350">
+                </canvas>
+
+            </div>
+
+
+            <!-- CONTROLES -->
+            <div class="controles">
+
+                <div class="fila-control">
+
+                    <button
+                        class="boton boton-arriba"
+                        onclick="moverArriba()">
+
+                        ⬆
+
+                    </button>
+
+                </div>
+
+
+                <div class="fila-control">
+
+                    <button
+                        class="boton boton-izquierda"
+                        onclick="moverIzquierda()">
+
+                        ⬅
+
+                    </button>
+
+
+                    <button
+                        class="boton boton-abajo"
+                        onclick="moverAbajo()">
+
+                        ⬇
+
+                    </button>
+
+
+                    <button
+                        class="boton boton-derecha"
+                        onclick="moverDerecha()">
+
+                        ➡
+
+                    </button>
+
+                </div>
+
+
+                <button
+                    class="boton-reiniciar"
+                    onclick="reiniciar()">
+
+                    <span>↻</span>
+
+                    Reiniciar
+
+                </button>
+
+            </div>
+
+
+            <!-- MENSAJE -->
+            <p id="mensaje"></p>
+
+        </main>
 
     </div>
 
-    <canvas id="juego" width="500" height="350"></canvas>
-
-    <div class="controles">
-
-        <button onclick="moverArriba()">⬆</button>
-
-        <br>
-
-        <button onclick="moverIzquierda()">⬅</button>
-
-        <button onclick="moverAbajo()">⬇</button>
-        <button onclick="moverDerecha()">➡</button>
-        <button onclick="reiniciar()">Reiniciar</button>
-
-    </div>
-
-    <p id="mensaje"></p>
 
     <script src="cazando.js"></script>
 

@@ -19,7 +19,7 @@ let objetivo = {
 };
 
 let puntos = 0;
-let tiempo = 10;
+let tiempo = 15;
 let juegoActivo = true;
 let reloj;
 
