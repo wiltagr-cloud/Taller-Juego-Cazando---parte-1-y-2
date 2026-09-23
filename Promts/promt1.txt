@@ -1,0 +1,40 @@
+PROMPT 1 - MEJORAMIENTO DE LA INTERFAZ DEL JUEGO CAZANDO
+
+Prompt inicial:
+
+Estoy trabajando en un juego web llamado "Juego Cazando".
+Quiero mejorar la interfaz gráfica del juego utilizando únicamente HTML y CSS.
+
+No modificar JavaScript ni cambiar la lógica del juego.
+
+El juego cuenta con:
+- Un canvas con id "juego".
+- Un indicador de puntos con id "puntos".
+- Un indicador de tiempo con id "tiempo".
+- Un mensaje con id "mensaje".
+- Botones para mover al jugador arriba, abajo, izquierda y derecha.
+- Un botón para reiniciar el juego.
+
+Quiero que la interfaz tenga un diseño más atractivo, ordenado y profesional, manteniendo el funcionamiento actual del juego.
+
+Quiero mejorar:
+- El título del juego.
+- El panel de puntos y tiempo.
+- El área donde se encuentra el juego.
+- Los botones de movimiento.
+- El botón de reinicio.
+- El mensaje del juego.
+- La adaptación de la página para diferentes tamaños de pantalla.
+
+Importante:
+- Solo modificar HTML y CSS.
+- No modificar JavaScript.
+- No cambiar los IDs existentes.
+- No eliminar las funciones actuales del juego.
+- Mantener el funcionamiento original del juego.
+
+Solicitudes adicionales:
+
+Después de obtener el primer resultado, solicité mejorar visualmente el diseño para que tuviera una apariencia más llamativa y relacionada con un juego de cacería.
+
+También solicité agregar un marco decorativo alrededor del área del juego, mejorar los botones, organizar el panel de puntos y tiempo y hacer que la interfaz fuera adaptable a dispositivos móviles.

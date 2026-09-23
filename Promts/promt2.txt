@@ -1,0 +1,32 @@
+PROMPT 2 - IMÁGENES Y FONDO DEL JUEGO CAZANDO
+
+Prompt inicial:
+
+Quiero continuar mejorando la interfaz gráfica del Juego Cazando.
+
+Ahora quiero agregar imágenes al proyecto y utilizar una imagen como fondo de la página.
+
+El fondo debe ocupar toda la pantalla y combinar con el diseño del juego.
+
+También quiero utilizar una imagen como fondo dentro del área del canvas del juego.
+
+Quiero mantener el diseño del Juego Cazando y mejorar su apariencia visual sin modificar la lógica del juego.
+
+Importante:
+- Solo modificar HTML y CSS.
+- No modificar JavaScript.
+- No cambiar los IDs existentes.
+- Mantener funcionando los controles, puntos, tiempo y reinicio.
+- Las imágenes deben cargarse desde archivos del proyecto.
+
+Solicitudes adicionales:
+
+Solicité que la imagen de fondo ocupara toda la pantalla y no solamente una parte.
+
+También solicité que el área del juego tuviera un marco decorativo para que la interfaz se viera más organizada y atractiva.
+
+Se utilizaron las imágenes:
+- Cazandorato.jpg como fondo exterior de la página.
+- rato.jpg como fondo del área del juego.
+
+Finalmente se verificó que las imágenes estuvieran referenciadas correctamente desde el archivo CSS.
